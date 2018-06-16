@@ -33,12 +33,12 @@
         /// <summary>
         /// Transaction Cost Percentage
         /// </summary>
-        protected abstract double TransactionCostPct { get; }
-        
+        public abstract double TransactionCostPct { get; }
+
         /// <summary>
         /// Transaction Cost Tolerance for highlight check
         /// </summary>
-        protected abstract double TransactionCostTolerance { get; }
+        public abstract double TransactionCostTolerance { get; }
 
         /// <summary>
         /// Transaction Cost - calculated from MarketValue * TransactionCostPct
@@ -52,13 +52,5 @@
         /// Stock Weight (calculated as a Market Value percentage of the Total Market Value of the Fund)
         /// </summary>
         public double StockWeight { get; set; }
-
-        /// <summary>
-        /// Returns true if Stock meets conditions to be highlighted
-        /// </summary>
-        public bool StockHighlighted
-        {
-            get { return MarketValue < 0 || TransactionCost > TransactionCostTolerance; }
-        }
     }
 }

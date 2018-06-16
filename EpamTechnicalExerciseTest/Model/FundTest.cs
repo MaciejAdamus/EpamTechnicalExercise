@@ -1,67 +1,66 @@
 ﻿using EpamTechnicalExercise.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EpamTechnicalExerciseTest.Model
 {
     [TestClass]
     public class FundTest
     {
+        private Fund _fund;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _fund = new Fund();
+        }
+
         [TestMethod]
         public void ShouldCorrectlyReturnEquityCount()
         {
-            Fund fund = new Fund();
-            fund.stockList.Add(new Equity());
-            fund.stockList.Add(new Equity());
-            fund.stockList.Add(new Bond());
-            fund.stockList.Add(new Equity());
+            _fund.StockList.Add(new Equity());
+            _fund.StockList.Add(new Equity());
+            _fund.StockList.Add(new Bond());
+            _fund.StockList.Add(new Equity());
 
-            Assert.AreEqual(3, fund.GetStockCount<Equity>());
+            Assert.AreEqual(3, _fund.GetStockCount(StockType.Equity));
         }
 
         [TestMethod]
         public void ShouldCorrectlyReturnNextStockName()
         {
-            Fund fund = new Fund();
-            fund.stockList.Add(new Equity());
-            fund.stockList.Add(new Equity());
-            fund.stockList.Add(new Bond());
-            fund.stockList.Add(new Equity());
+            _fund.StockList.Add(new Equity());
+            _fund.StockList.Add(new Equity());
+            _fund.StockList.Add(new Bond());
+            _fund.StockList.Add(new Equity());
 
-            Assert.AreEqual("Equity4", fund.GetNextStockName<Equity>());
-            Assert.AreEqual("Bond2", fund.GetNextStockName<Bond>());
+            Assert.AreEqual("Equity4", _fund.GetNextStockName(StockType.Equity));
+            Assert.AreEqual("Bond2", _fund.GetNextStockName(StockType.Bond));
         }
 
         [TestMethod]
         public void ShouldReturnCorrectTotalMarketValue()
         {
-            Fund fund = new Fund();
-            fund.AddEquity(1, 100);
-            fund.AddEquity(2, 200);
-            fund.AddBond(3, 300);
+            _fund.AddStock(1, 100, StockType.Equity);
+            _fund.AddStock(2, 200, StockType.Equity);
+            _fund.AddStock(3, 300, StockType.Bond);
 
-            Assert.AreEqual(1400, fund.TotalMarketValue);
+            Assert.AreEqual(1400, _fund.TotalMarketValue);
         }
 
         [TestMethod]
         public void ShouldCorrectlyUpdateStockWeight()
         {
-            Fund fund = new Fund();
-            fund.AddEquity(1, 100);
-            Assert.AreEqual(100, fund.stockList[0].StockWeight);
+            _fund.AddStock(1, 100, StockType.Equity);
+            Assert.AreEqual(100, _fund.StockList[0].StockWeight);
 
-            fund.AddEquity(2, 200);
-            Assert.AreEqual(20, fund.stockList[0].StockWeight);
-            Assert.AreEqual(80, fund.stockList[1].StockWeight);
+            _fund.AddStock(2, 200, StockType.Equity);
+            Assert.AreEqual(20, _fund.StockList[0].StockWeight);
+            Assert.AreEqual(80, _fund.StockList[1].StockWeight);
 
-            fund.AddBond(3, 300);
-            Assert.AreEqual(100d/1400d * 100, fund.stockList[0].StockWeight);
-            Assert.AreEqual(400d/1400d * 100, fund.stockList[1].StockWeight);
-            Assert.AreEqual(900d/1400d * 100, fund.stockList[2].StockWeight);
+            _fund.AddStock(3, 300, StockType.Bond);
+            Assert.AreEqual(100d/1400d * 100, _fund.StockList[0].StockWeight);
+            Assert.AreEqual(400d/1400d * 100, _fund.StockList[1].StockWeight);
+            Assert.AreEqual(900d/1400d * 100, _fund.StockList[2].StockWeight);
         }
     }
 }

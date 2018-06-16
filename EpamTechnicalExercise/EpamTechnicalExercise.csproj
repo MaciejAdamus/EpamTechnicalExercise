@@ -54,7 +54,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\FundAddPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FundGridPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FundSummaryPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -62,7 +74,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\StockNameColorConverter.cs" />
+    <Compile Include="Validations\ValidationErrorContainer.cs" />
+    <Compile Include="Model\StockFactory.cs" />
+    <Compile Include="Model\StockTotals.cs" />
+    <Compile Include="Validations\PriceValidationRule.cs" />
+    <Compile Include="Validations\QuantityValidationRule.cs" />
+    <Compile Include="ViewModel\FundViewModel.cs" />
+    <Compile Include="View\FundAddPanel.xaml.cs">
+      <DependentUpon>FundAddPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FundGridPanel.xaml.cs">
+      <DependentUpon>FundGridPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FundSummaryPanel.xaml.cs">
+      <DependentUpon>FundSummaryPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -98,5 +127,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

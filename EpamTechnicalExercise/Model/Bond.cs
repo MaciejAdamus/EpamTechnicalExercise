@@ -2,11 +2,8 @@
 {
     public class Bond : Stock
     {
-        private const double _transactionCostPct = 2;
-        private const double _transactionCostTolerance = 100000;
-
-        protected override double TransactionCostPct => _transactionCostPct;
-        protected override double TransactionCostTolerance => _transactionCostTolerance;
+        public override double TransactionCostPct => 0.02;
+        public override double TransactionCostTolerance => 100000;
 
         public Bond()
         {

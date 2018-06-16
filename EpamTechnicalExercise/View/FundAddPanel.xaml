@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="EpamTechnicalExercise.View.FundAddPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:EpamTechnicalExercise.Model"
+             xmlns:validations="clr-namespace:EpamTechnicalExercise.Validations"
+             mc:Ignorable="d" Height="50"
+             Validation.Error="FundAddPanel_Error">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="StockTypeEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:StockType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    
+    
+    <StackPanel Orientation="Horizontal">
+        <Label Content="Price" Margin="25 0 0 0" VerticalAlignment="Center"/>
+        <TextBox x:Name="xPriceTextBox" Height="20" Width="75" Margin="0 0 25 0" >
+            <TextBox.Text>
+                <Binding Path="Price" TargetNullValue="" NotifyOnValidationError="True" UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <validations:PriceValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Quantity" VerticalAlignment="Center" />
+        <TextBox x:Name="xQuantityTextBox" Height="20" Width="75" Margin="0 0 25 0" >
+            <TextBox.Text>
+                <Binding Path="Quantity" TargetNullValue="" NotifyOnValidationError="True" UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <validations:QuantityValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Stock type" VerticalAlignment="Center" />
+        <ComboBox x:Name="_xStockTypeComboBox" Height="25" Width="75" Margin="0 0 25 0" ItemsSource="{Binding Source={StaticResource StockTypeEnum}}" Text="{Binding StockType}"/>
+
+        <Button Height="25" Width="75" Content="Add stock" Command="{Binding AddStockCommand}" CommandParameter="{Binding}"/>
+    </StackPanel>
+</UserControl>

@@ -6,52 +6,35 @@ namespace EpamTechnicalExercise.Model
 {
     public class Fund
     {
-        public List<Stock> stockList;
+        public List<Stock> StockList { get; private set; }
 
-        public double TotalMarketValue => stockList.Sum(x => x.MarketValue);
+        public double TotalMarketValue => StockList.Sum(x => x.MarketValue);
 
         public Fund()
         {
-            stockList = new List<Stock>();
+            StockList = new List<Stock>();
         }
 
-        public int GetStockCount<T>()
+        public int GetStockCount(StockType stockType)
         {
-            return stockList.Count(x => x.GetType() == typeof(T));
+            return StockList.Count(x => x.StockType == stockType);
         }
 
-        public string GetNextStockName<T>()
+        public string GetNextStockName(StockType stockType)
         {
-            return String.Format("{0}{1}", typeof(T).Name, GetStockCount<T>() + 1);
+            return String.Format("{0}{1}", stockType, GetStockCount(stockType) + 1);
         }
 
-        public void AddEquity(int quantity, double price)
+        public void AddStock(int quantity, double price, StockType stockType)
         {
-            stockList.Add(new Equity()
-            {
-                Quantity = quantity,
-                Price = price,
-                StockName = GetNextStockName<Equity>()
-            });
-
-            UpdateStockWeight();
-        }
-
-        public void AddBond(int quantity, double price)
-        {
-            stockList.Add(new Bond()
-            {
-                Quantity = quantity,
-                Price = price,
-                StockName = GetNextStockName<Bond>()
-            });
+            StockList.Add(StockFactory.GetStock(quantity, price, GetNextStockName(stockType), stockType));
 
             UpdateStockWeight();
         }
 
         private void UpdateStockWeight()
         {
-            stockList.ForEach(x => x.StockWeight = x.MarketValue / TotalMarketValue * 100);
+            StockList.ForEach(x => x.StockWeight = x.MarketValue / TotalMarketValue * 100);
         }
     }
 }
