@@ -97,45 +97,5 @@ namespace EpamTechnicalExerciseTest.ViewModel
             var result = _fundViewModel.AddStockCommand.CanExecute(null);
             Assert.IsFalse(result);
         }
-
-        [TestMethod]
-        public void TotalsCollectionShouldHaveAllStockTypesAndAllOnLastPosition()
-        {
-            var stockTypesArray = Enum.GetValues(typeof(StockType));
-            var expectedCount = stockTypesArray.Length + 1;
-
-            Assert.AreEqual(expectedCount, _fundViewModel.StockTotalsCollection.Count);
-            foreach (var stockType in stockTypesArray)
-            {
-                Assert.IsTrue(_fundViewModel.StockTotalsCollection.Any(stock => stock.StockType == stockType.ToString()));
-            }
-            Assert.AreEqual("All", _fundViewModel.StockTotalsCollection.Last().StockType);
-        }
-
-        [TestMethod]
-        public void TotalsCollectionShouldHaveCorrectTotals()
-        {
-            Fund fund = new Fund();
-            fund.AddStock(10, 100, StockType.Equity);
-            fund.AddStock(20, 200, StockType.Bond);
-            fund.AddStock(30, 300, StockType.Bond);
-
-            var fundFactoryMock = MockRepository.GenerateMock<IFundFactory>();
-            fundFactoryMock.Stub(fundFactory => fundFactory.GetFund()).Return(fund);
-
-            FundViewModel fundViewModel = new FundViewModel(fundFactoryMock);
-
-            Assert.AreEqual(1, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "Equity").First().TotalNumber);
-            Assert.AreEqual(2, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "Bond").First().TotalNumber);
-            Assert.AreEqual(3, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "All").First().TotalNumber);
-
-            Assert.AreEqual(1000d/14000d, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "Equity").First().TotalStockWeight);
-            Assert.AreEqual(13000d/14000d, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "Bond").First().TotalStockWeight);
-            Assert.AreEqual(1, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "All").First().TotalStockWeight);
-
-            Assert.AreEqual(1000, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "Equity").First().TotalMarketValue);
-            Assert.AreEqual(13000, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "Bond").First().TotalMarketValue);
-            Assert.AreEqual(14000, fundViewModel.StockTotalsCollection.Where(total => total.StockType == "All").First().TotalMarketValue);
-        }
     }
 }

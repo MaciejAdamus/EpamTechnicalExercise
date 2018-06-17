@@ -11,6 +11,11 @@ namespace EpamTechnicalExercise.Model.FundModel
         List<Stock> StockList { get; }
 
         /// <summary>
+        /// List of totals from StockList
+        /// </summary>
+        List<StockTotals> StockTotalsList { get; }
+
+        /// <summary>
         /// Add stock to Fund
         /// </summary>
         void AddStock(int quantity, double price, StockType stockType);

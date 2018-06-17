@@ -32,7 +32,7 @@ namespace EpamTechnicalExercise.ViewModel
         {
             get
             {
-                _stockTotalsCollection = GetTotalsCollection();
+                _stockTotalsCollection = new ObservableCollection<StockTotals>(_fund.StockTotalsList);
                 return _stockTotalsCollection;
             }
         }
@@ -73,32 +73,6 @@ namespace EpamTechnicalExercise.ViewModel
         protected void RaisePropertyChangedEvent(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        private ObservableCollection<StockTotals> GetTotalsCollection()
-        {
-            ObservableCollection<StockTotals> result = new ObservableCollection<StockTotals>();
-
-            foreach(StockType stockType in Enum.GetValues(typeof(StockType)))
-            {
-                result.Add(new StockTotals()
-                {
-                    StockType = stockType.ToString(),
-                    TotalMarketValue = _fund.StockList.Where(x => x.StockType == stockType).Sum(x => x.MarketValue),
-                    TotalStockWeight = _fund.StockList.Where(x => x.StockType == stockType).Sum(x => x.StockWeight),
-                    TotalNumber = _fund.StockList.Count(x => x.StockType == stockType)
-                });
-            }
-
-            result.Add(new StockTotals()
-            {
-                StockType = "All",
-                TotalMarketValue = _fund.StockList.Sum(x => x.MarketValue),
-                TotalStockWeight = _fund.StockList.Sum(x => x.StockWeight),
-                TotalNumber = _fund.StockList.Count
-            });
-
-            return result;
         }
     }
 }
