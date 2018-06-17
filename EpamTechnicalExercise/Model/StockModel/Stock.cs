@@ -5,7 +5,7 @@
         /// <summary>
         /// Stock Type
         /// </summary>
-        public StockType StockType { get; protected set; }
+        public abstract StockType StockType { get; }
 
         /// <summary>
         /// Stock Name
