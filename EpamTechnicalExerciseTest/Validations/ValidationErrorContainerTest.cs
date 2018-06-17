@@ -16,16 +16,8 @@ namespace EpamTechnicalExerciseTest.Validations
         [TestInitialize]
         public void TestInitalize()
         {
-            FakeObject fakeObject = new FakeObject();
-            FakeControl fakeControl = new FakeControl();
-            Binding myBinding = new Binding("FakeProperty");
-            myBinding.Source = fakeObject;
-            fakeControl.SetBinding(FakeControl.FakeDependencyProperty, myBinding);
-
-            BindingExpression expression = BindingOperations.GetBindingExpression(fakeControl, FakeControl.FakeDependencyProperty);
-
             _validationRule = new FakeValidationRule();
-            _error = new ValidationError(_validationRule, expression);
+            _error = new FakeValidationError(_validationRule);
         }
 
         [TestCleanup]

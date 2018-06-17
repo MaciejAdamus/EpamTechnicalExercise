@@ -7,23 +7,23 @@
              mc:Ignorable="d" >
     <UserControl.Resources>
         <converters:StockNameColorConverter x:Key="xStockNameColorConverter"/>
+        
+        <Style x:Key="xStockNameColorStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{Binding Converter={StaticResource xStockNameColorConverter}}"/>
+        </Style>
+
     </UserControl.Resources>
-    
-    <DataGrid ColumnWidth="*" ItemsSource="{Binding StockCollection}" AutoGenerateColumns="False" IsReadOnly="True" >
+
+    <DataGrid ColumnWidth="*" ItemsSource="{Binding StockCollection}" AutoGenerateColumns="False" IsReadOnly="True" 
+              CellStyle="{StaticResource xCellRightAlignment}" ColumnHeaderStyle="{StaticResource xHeaderStyle}">
         <DataGrid.Columns>
-            <DataGridTextColumn Header="Stock Type" Binding="{Binding StockType}"/>
-            <DataGridTextColumn Header="Stock Name" Binding="{Binding StockName}">
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Foreground" Value="{Binding Converter={StaticResource xStockNameColorConverter}}"/>
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
-            <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+            <DataGridTextColumn Header="Stock Type" Binding="{Binding StockType}" CellStyle="{StaticResource xCellCenterAlignment}"/>
+            <DataGridTextColumn Header="Stock Name" Binding="{Binding StockName}" ElementStyle="{StaticResource xStockNameColorStyle}" CellStyle="{StaticResource xCellCenterAlignment}"/>
+            <DataGridTextColumn Header="Price" Binding="{Binding Price}" /> 
             <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
             <DataGridTextColumn Header="Market Value" Binding="{Binding MarketValue}"/>
             <DataGridTextColumn Header="Transaction Cost" Binding="{Binding TransactionCost}"/>
-            <DataGridTextColumn Header="Stock Weight" Binding="{Binding StockWeight}"/>
+            <DataGridTextColumn Header="Stock Weight" Binding="{Binding StockWeight, StringFormat=P}"/>
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EpamTechnicalExercise.Model
+namespace EpamTechnicalExercise.Model.StockModel
 {
     public static class StockFactory
     {

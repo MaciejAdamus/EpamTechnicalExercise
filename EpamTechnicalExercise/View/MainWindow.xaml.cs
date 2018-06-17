@@ -1,4 +1,5 @@
-﻿using EpamTechnicalExercise.ViewModel;
+﻿using EpamTechnicalExercise.Model.FundModel;
+using EpamTechnicalExercise.ViewModel;
 using System.Windows;
 
 namespace EpamTechnicalExercise
@@ -14,7 +15,8 @@ namespace EpamTechnicalExercise
         {
             InitializeComponent();
 
-            _fundViewModel = new FundViewModel();
+            IFundFactory fundFactory = new FundFactory();
+            _fundViewModel = new FundViewModel(fundFactory);
 
             xFundAddPanel.DataContext = _fundViewModel;
             xFundGridPanel.DataContext = _fundViewModel;

@@ -1,4 +1,4 @@
-﻿using EpamTechnicalExercise.Model;
+﻿using EpamTechnicalExercise.Model.StockModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EpamTechnicalExerciseTest.Model

@@ -75,10 +75,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\DoubleToStringConverter.cs" />
     <Compile Include="Converters\StockNameColorConverter.cs" />
+    <Compile Include="Model\FundModel\FundFactory.cs" />
+    <Compile Include="Model\FundModel\IFund.cs" />
+    <Compile Include="Model\FundModel\IFundFactory.cs" />
     <Compile Include="Validations\ValidationErrorContainer.cs" />
-    <Compile Include="Model\StockFactory.cs" />
-    <Compile Include="Model\StockTotals.cs" />
+    <Compile Include="Model\StockModel\StockFactory.cs" />
+    <Compile Include="Model\StockModel\StockTotals.cs" />
     <Compile Include="Validations\PriceValidationRule.cs" />
     <Compile Include="Validations\QuantityValidationRule.cs" />
     <Compile Include="ViewModel\FundViewModel.cs" />
@@ -97,11 +101,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Bond.cs" />
-    <Compile Include="Model\Equity.cs" />
-    <Compile Include="Model\Fund.cs" />
-    <Compile Include="Model\Stock.cs" />
-    <Compile Include="Model\StockType.cs" />
+    <Compile Include="Model\StockModel\Bond.cs" />
+    <Compile Include="Model\StockModel\Equity.cs" />
+    <Compile Include="Model\FundModel\Fund.cs" />
+    <Compile Include="Model\StockModel\Stock.cs" />
+    <Compile Include="Model\StockModel\StockType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

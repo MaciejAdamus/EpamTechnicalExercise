@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Linq;
 using EpamTechnicalExercise.Validations;
+using EpamTechnicalExercise.Model.FundModel;
+using EpamTechnicalExercise.Model.StockModel;
 
 namespace EpamTechnicalExercise.ViewModel
 {
@@ -13,7 +15,7 @@ namespace EpamTechnicalExercise.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly Fund _fund = new Fund();
+        private readonly IFund _fund;
 
         private ObservableCollection<Stock> _stockCollection;
         public ObservableCollection<Stock> StockCollection
@@ -51,8 +53,9 @@ namespace EpamTechnicalExercise.ViewModel
         public double? Price { get; set; }
         public StockType StockType { get; set; }
 
-        public FundViewModel()
+        public FundViewModel(IFundFactory fundFactory)
         {
+            _fund = fundFactory.GetFund();
         }
 
         private void AddStock(object parameter)

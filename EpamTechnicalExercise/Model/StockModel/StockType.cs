@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EpamTechnicalExercise.Model
+namespace EpamTechnicalExercise.Model.StockModel
 {
     public enum StockType
     {

@@ -1,5 +1,5 @@
 ﻿using EpamTechnicalExercise.Converters;
-using EpamTechnicalExercise.Model;
+using EpamTechnicalExercise.Model.StockModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.Windows;

@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:model="clr-namespace:EpamTechnicalExercise.Model"
+             xmlns:model="clr-namespace:EpamTechnicalExercise.Model.StockModel"
              xmlns:validations="clr-namespace:EpamTechnicalExercise.Validations"
+             xmlns:converters="clr-namespace:EpamTechnicalExercise.Converters"
              mc:Ignorable="d" Height="50"
              Validation.Error="FundAddPanel_Error">
     <UserControl.Resources>
@@ -14,14 +15,26 @@
                 <x:Type TypeName="model:StockType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        
+        <Style x:Key="xTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0 0 5 0"/>
+        </Style>
+        
+        <converters:DoubleToStringConverter x:Key="xDoubleToStringConverter"/>
     </UserControl.Resources>
     
-    
     <StackPanel Orientation="Horizontal">
-        <Label Content="Price" Margin="25 0 0 0" VerticalAlignment="Center"/>
-        <TextBox x:Name="xPriceTextBox" Height="20" Width="75" Margin="0 0 25 0" >
+
+        <Label Content="Stock type" VerticalAlignment="Center" Margin="25 0 0 0" />
+        <ComboBox x:Name="_xStockTypeComboBox" Height="22" Width="75" Margin="0 0 25 0" VerticalAlignment="Center" ItemsSource="{Binding Source={StaticResource StockTypeEnum}}" Text="{Binding StockType}"/>
+
+        <Label Content="Price" VerticalAlignment="Center"/>
+        <TextBox x:Name="xPriceTextBox" Style="{StaticResource xTextBoxStyle}" >
             <TextBox.Text>
-                <Binding Path="Price" TargetNullValue="" NotifyOnValidationError="True" UpdateSourceTrigger="LostFocus">
+                <Binding Path="Price" TargetNullValue="" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource xDoubleToStringConverter}">
                     <Binding.ValidationRules>
                         <validations:PriceValidationRule />
                     </Binding.ValidationRules>
@@ -30,19 +43,17 @@
         </TextBox>
 
         <Label Content="Quantity" VerticalAlignment="Center" />
-        <TextBox x:Name="xQuantityTextBox" Height="20" Width="75" Margin="0 0 25 0" >
+        <TextBox x:Name="xQuantityTextBox" Style="{StaticResource xTextBoxStyle}" >
             <TextBox.Text>
-                <Binding Path="Quantity" TargetNullValue="" NotifyOnValidationError="True" UpdateSourceTrigger="LostFocus">
+                <Binding Path="Quantity" TargetNullValue="" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validations:QuantityValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
-        <Label Content="Stock type" VerticalAlignment="Center" />
-        <ComboBox x:Name="_xStockTypeComboBox" Height="25" Width="75" Margin="0 0 25 0" ItemsSource="{Binding Source={StaticResource StockTypeEnum}}" Text="{Binding StockType}"/>
-
+        
         <Button Height="25" Width="75" Content="Add stock" Command="{Binding AddStockCommand}" CommandParameter="{Binding}"/>
+        
     </StackPanel>
 </UserControl>

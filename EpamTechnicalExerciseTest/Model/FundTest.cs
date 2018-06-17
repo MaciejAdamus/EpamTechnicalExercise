@@ -1,4 +1,5 @@
-﻿using EpamTechnicalExercise.Model;
+﻿using EpamTechnicalExercise.Model.StockModel;
+using EpamTechnicalExercise.Model.FundModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EpamTechnicalExerciseTest.Model
@@ -51,16 +52,16 @@ namespace EpamTechnicalExerciseTest.Model
         public void ShouldCorrectlyUpdateStockWeight()
         {
             _fund.AddStock(1, 100, StockType.Equity);
-            Assert.AreEqual(100, _fund.StockList[0].StockWeight);
+            Assert.AreEqual(1, _fund.StockList[0].StockWeight);
 
             _fund.AddStock(2, 200, StockType.Equity);
-            Assert.AreEqual(20, _fund.StockList[0].StockWeight);
-            Assert.AreEqual(80, _fund.StockList[1].StockWeight);
+            Assert.AreEqual(0.2, _fund.StockList[0].StockWeight);
+            Assert.AreEqual(0.8, _fund.StockList[1].StockWeight);
 
             _fund.AddStock(3, 300, StockType.Bond);
-            Assert.AreEqual(100d/1400d * 100, _fund.StockList[0].StockWeight);
-            Assert.AreEqual(400d/1400d * 100, _fund.StockList[1].StockWeight);
-            Assert.AreEqual(900d/1400d * 100, _fund.StockList[2].StockWeight);
+            Assert.AreEqual(100d/1400d, _fund.StockList[0].StockWeight);
+            Assert.AreEqual(400d/1400d, _fund.StockList[1].StockWeight);
+            Assert.AreEqual(900d/1400d, _fund.StockList[2].StockWeight);
         }
     }
 }

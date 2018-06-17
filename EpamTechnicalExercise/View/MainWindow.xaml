@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:EpamTechnicalExercise.View"
         mc:Ignorable="d"
-        Title="EPAM Technical Exercise" Height="450" Width="800">
+        Title="EPAM Technical Exercise">
     <DockPanel>
         <view:FundAddPanel x:Name="xFundAddPanel" DockPanel.Dock="Top"/>
         <view:FundSummaryPanel x:Name="xFundSummaryPanel" DockPanel.Dock="Right" />

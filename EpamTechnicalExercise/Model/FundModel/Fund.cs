@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EpamTechnicalExercise.Model.StockModel;
 
-namespace EpamTechnicalExercise.Model
+namespace EpamTechnicalExercise.Model.FundModel
 {
-    public class Fund
+    public class Fund : IFund
     {
-        public List<Stock> StockList { get; private set; }
+        public List<Stock> StockList { get; }
 
         public double TotalMarketValue => StockList.Sum(x => x.MarketValue);
 
@@ -34,7 +35,7 @@ namespace EpamTechnicalExercise.Model
 
         private void UpdateStockWeight()
         {
-            StockList.ForEach(x => x.StockWeight = x.MarketValue / TotalMarketValue * 100);
+            StockList.ForEach(x => x.StockWeight = x.MarketValue / TotalMarketValue);
         }
     }
 }

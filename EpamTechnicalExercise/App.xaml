@@ -1,9 +1,18 @@
 ﻿<Application x:Class="EpamTechnicalExercise.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:EpamTechnicalExercise"
              StartupUri="View\MainWindow.xaml">
     <Application.Resources>
-         
+        <Style  x:Key="xCellRightAlignment" TargetType="{x:Type DataGridCell}">
+            <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+        </Style>
+
+        <Style  x:Key="xCellCenterAlignment" TargetType="{x:Type DataGridCell}">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style  x:Key="xHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
     </Application.Resources>
 </Application>

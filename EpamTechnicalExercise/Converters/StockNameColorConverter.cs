@@ -1,4 +1,4 @@
-﻿using EpamTechnicalExercise.Model;
+﻿using EpamTechnicalExercise.Model.StockModel;
 using System;
 using System.Globalization;
 using System.Windows;

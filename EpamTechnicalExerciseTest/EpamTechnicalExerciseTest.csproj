@@ -46,15 +46,20 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\DoubleToStringConverterTest.cs" />
     <Compile Include="Converters\StockNameColorConverterTest.cs" />
     <Compile Include="Fakes\FakeControl.cs" />
     <Compile Include="Fakes\FakeObject.cs" />
+    <Compile Include="Fakes\FakeValidationError.cs" />
     <Compile Include="Model\FundTest.cs" />
     <Compile Include="Model\StockFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,9 +67,12 @@
     <Compile Include="Validations\PriceValidationRuleTest.cs" />
     <Compile Include="Validations\QuantityValidationRuleTest.cs" />
     <Compile Include="Validations\ValidationErrorContainerTest.cs" />
+    <Compile Include="ViewModel\FundViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EpamTechnicalExercise\EpamTechnicalExercise.csproj">

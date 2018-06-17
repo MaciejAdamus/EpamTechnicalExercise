@@ -4,6 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" >
-    <DataGrid ItemsSource="{Binding StockTotalsCollection}" IsReadOnly="True" />
-
+    <StackPanel Orientation="Vertical">
+        
+        <TextBox Text="Totals" HorizontalContentAlignment="Center" FontSize="30"/>
+        
+        <DataGrid ItemsSource="{Binding StockTotalsCollection}" IsReadOnly="True" LoadingRow="DataGrid_LoadingRow" AutoGenerateColumns="False"
+                  CellStyle="{StaticResource xCellRightAlignment}" ColumnHeaderStyle="{StaticResource xHeaderStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Stock Type" Binding="{Binding StockType}" CellStyle="{StaticResource xCellCenterAlignment}"/>
+                <DataGridTextColumn Header="Total Number" Binding="{Binding TotalNumber}"/>
+                <DataGridTextColumn Header="Total Stock Weight" Binding="{Binding TotalStockWeight, StringFormat=P}"/>
+                <DataGridTextColumn Header="Total Market Value" Binding="{Binding TotalMarketValue}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </StackPanel>
 </UserControl>

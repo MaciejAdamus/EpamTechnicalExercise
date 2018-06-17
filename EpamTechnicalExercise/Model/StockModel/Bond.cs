@@ -1,4 +1,4 @@
-﻿namespace EpamTechnicalExercise.Model
+﻿namespace EpamTechnicalExercise.Model.StockModel
 {
     public class Bond : Stock
     {
